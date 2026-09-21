@@ -1,0 +1,398 @@
+[
+  {
+    "id": "chair_squat",
+    "name": "Chair Squat",
+    "pattern": "squat_or_press",
+    "equipmentRequired": ["none"],
+    "isSeated": false,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Sit back toward the chair like you're about to sit down, then stand back up.",
+      "Keep your weight through your heels, not your toes.",
+      "Tap the chair lightly with your hips, don't fully sit, then rise."
+    ],
+    "commonMistake": "Letting the knees cave inward as you stand up.",
+    "substituteIds": ["seated_knee_extension", "seated_leg_extension_band", "dumbbell_goblet_squat"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "dumbbell_goblet_squat",
+    "name": "Dumbbell Goblet Squat",
+    "pattern": "squat_or_press",
+    "equipmentRequired": ["dumbbells"],
+    "isSeated": false,
+    "isSupported": false,
+    "videoUrl": null,
+    "cues": [
+      "Hold one dumbbell close to your chest with both hands.",
+      "Bend your knees and hips to lower down, like sitting into a low chair.",
+      "Push through your whole foot to stand back up."
+    ],
+    "commonMistake": "Rising onto the toes instead of pushing through the whole foot.",
+    "substituteIds": ["chair_squat", "seated_knee_extension", "seated_leg_extension_band"],
+    "contraindicatedFlags": ["balance_or_falls"],
+    "jargonGloss": {}
+  },
+  {
+    "id": "seated_leg_extension_band",
+    "name": "Seated Leg Extension (with band)",
+    "pattern": "squat_or_press",
+    "equipmentRequired": ["bands"],
+    "isSeated": true,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Sit tall in a sturdy chair with the band looped around one ankle and anchored under the other foot.",
+      "Straighten one knee slowly until your leg is extended, then lower with control.",
+      "Keep your back against the chair the whole time."
+    ],
+    "commonMistake": "Kicking the leg out fast instead of moving slowly.",
+    "substituteIds": ["chair_squat"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "standing_hip_hinge",
+    "name": "Standing Hip Hinge",
+    "pattern": "hinge",
+    "equipmentRequired": ["none"],
+    "isSeated": false,
+    "isSupported": false,
+    "videoUrl": null,
+    "cues": [
+      "This is a hip hinge — bending forward from your hips, not your lower back, with a soft bend in the knees.",
+      "Reach your hips backward as your chest tips forward, like closing a car door with your hip.",
+      "Come back up by squeezing your glutes (the muscles in your buttocks) to standing."
+    ],
+    "commonMistake": "Rounding the lower back instead of bending at the hips.",
+    "substituteIds": ["seated_hip_hinge_chair", "seated_hip_hinge_band", "dumbbell_romanian_deadlift"],
+    "contraindicatedFlags": ["joint_pain_limits_daily_activity"],
+    "jargonGloss": { "hip hinge": "bending forward from the hips while keeping the back straight" }
+  },
+  {
+    "id": "dumbbell_romanian_deadlift",
+    "name": "Dumbbell Hip Hinge (Romanian Deadlift)",
+    "pattern": "hinge",
+    "equipmentRequired": ["dumbbells"],
+    "isSeated": false,
+    "isSupported": false,
+    "videoUrl": null,
+    "cues": [
+      "Hold a dumbbell in each hand in front of your thighs.",
+      "This is a hip hinge — push your hips back and let the weights slide down toward your shins, chest tipping forward.",
+      "Squeeze your glutes (buttock muscles) to stand back up tall."
+    ],
+    "commonMistake": "Bending the knees too much so it becomes a squat instead of a hinge.",
+    "substituteIds": ["standing_hip_hinge", "seated_hip_hinge_chair", "seated_hip_hinge_band"],
+    "contraindicatedFlags": ["joint_pain_limits_daily_activity", "balance_or_falls"],
+    "jargonGloss": { "hip hinge": "bending forward from the hips while keeping the back straight" }
+  },
+  {
+    "id": "seated_hip_hinge_band",
+    "name": "Seated Hip Hinge (chair-supported, with band)",
+    "pattern": "hinge",
+    "equipmentRequired": ["bands"],
+    "isSeated": true,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Sit on the edge of a sturdy chair with the band under both feet, one end in each hand.",
+      "This is a hip hinge — fold forward from your hips with a flat back, then pull the band as you sit back up tall.",
+      "Move slowly in both directions."
+    ],
+    "commonMistake": "Rounding the shoulders forward instead of keeping the chest lifted.",
+    "substituteIds": ["standing_hip_hinge"],
+    "contraindicatedFlags": [],
+    "jargonGloss": { "hip hinge": "bending forward from the hips while keeping the back straight" }
+  },
+  {
+    "id": "wall_push_up",
+    "name": "Wall Push-Up",
+    "pattern": "push",
+    "equipmentRequired": ["none"],
+    "isSeated": false,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Stand an arm's length from a wall, hands flat on the wall at shoulder height.",
+      "Bend your elbows to bring your chest toward the wall, then push back.",
+      "Keep your body in a straight line from head to heels."
+    ],
+    "commonMistake": "Letting the hips sag or pike instead of staying in a straight line.",
+    "substituteIds": ["seated_palm_press", "seated_chest_press_band", "incline_push_up"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "incline_push_up",
+    "name": "Incline Push-Up (counter or sturdy table)",
+    "pattern": "push",
+    "equipmentRequired": ["none"],
+    "isSeated": false,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Place both hands on a sturdy counter or table, feet back so your body is at an angle.",
+      "Bend your elbows to lower your chest toward the counter, then push back up.",
+      "Keep your body in a straight line, don't let your hips drop."
+    ],
+    "commonMistake": "Flaring the elbows straight out to the sides instead of at a slight angle.",
+    "substituteIds": ["wall_push_up", "seated_palm_press", "seated_chest_press_band"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "seated_chest_press_band",
+    "name": "Seated Chest Press (with band)",
+    "pattern": "push",
+    "equipmentRequired": ["bands"],
+    "isSeated": true,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Sit tall with the band wrapped around your upper back, one end in each hand at chest height.",
+      "Push both hands forward until your arms are extended, then return with control.",
+      "Keep your back flat against the chair."
+    ],
+    "commonMistake": "Leaning forward to help push instead of using the chest and arms.",
+    "substituteIds": ["wall_push_up"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "dumbbell_seated_overhead_press",
+    "name": "Seated Dumbbell Overhead Press",
+    "pattern": "push",
+    "equipmentRequired": ["dumbbells"],
+    "isSeated": true,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Sit tall in a sturdy chair, holding a dumbbell in each hand at shoulder height.",
+      "Press both dumbbells up until your arms are straight, without arching your back.",
+      "Lower with control back to shoulder height."
+    ],
+    "commonMistake": "Arching the lower back to help press the weight up.",
+    "substituteIds": ["wall_push_up", "seated_chest_press_band"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "doorframe_row",
+    "name": "Doorframe Row",
+    "pattern": "pull",
+    "equipmentRequired": ["none"],
+    "isSeated": false,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Hold both sides of a sturdy doorframe, feet back, leaning your weight back with straight arms.",
+      "Pull your chest toward the doorframe by squeezing your shoulder blades together.",
+      "Return slowly to the starting lean."
+    ],
+    "commonMistake": "Pulling with just the arms instead of squeezing the shoulder blades together first.",
+    "substituteIds": ["seated_scapular_squeeze", "seated_row_band", "dumbbell_bent_over_row"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "seated_row_band",
+    "name": "Seated Row (with band)",
+    "pattern": "pull",
+    "equipmentRequired": ["bands"],
+    "isSeated": true,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Sit tall with legs extended, band looped around your feet, one end in each hand.",
+      "Pull your elbows straight back, squeezing your shoulder blades together.",
+      "Return slowly, keeping your back tall the whole time."
+    ],
+    "commonMistake": "Rounding the shoulders forward at the start instead of sitting tall.",
+    "substituteIds": ["doorframe_row"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "dumbbell_bent_over_row",
+    "name": "Dumbbell Bent-Over Row (chair-supported)",
+    "pattern": "pull",
+    "equipmentRequired": ["dumbbells"],
+    "isSeated": false,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Rest one hand and knee on a sturdy chair, holding a dumbbell in the other hand.",
+      "Pull the dumbbell up toward your ribs, leading with your elbow.",
+      "Lower slowly back down with control."
+    ],
+    "commonMistake": "Twisting the torso to lift the weight instead of keeping the back flat.",
+    "substituteIds": ["seated_scapular_squeeze", "seated_row_band", "doorframe_row"],
+    "contraindicatedFlags": ["balance_or_falls"],
+    "jargonGloss": {}
+  },
+  {
+    "id": "seated_marching_core",
+    "name": "Seated Marching (core)",
+    "pattern": "carry_or_core",
+    "equipmentRequired": ["none"],
+    "isSeated": true,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Sit tall toward the front edge of a sturdy chair, hands holding the sides for support.",
+      "Lift one knee up toward your chest, then lower it, alternating sides.",
+      "Keep your back tall instead of leaning back as you lift."
+    ],
+    "commonMistake": "Leaning backward to help lift the knee instead of sitting tall.",
+    "substituteIds": ["suitcase_carry"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "suitcase_carry",
+    "name": "Suitcase Carry",
+    "pattern": "carry_or_core",
+    "equipmentRequired": ["dumbbells"],
+    "isSeated": false,
+    "isSupported": false,
+    "videoUrl": null,
+    "cues": [
+      "Hold one dumbbell (or a loaded bag) at your side, standing tall.",
+      "Walk a short, clear path keeping your shoulders level and torso upright.",
+      "Switch sides halfway through."
+    ],
+    "commonMistake": "Leaning sideways away from the weight instead of standing tall.",
+    "substituteIds": ["seated_marching_core", "farmer_carry_bag"],
+    "contraindicatedFlags": ["balance_or_falls"],
+    "jargonGloss": {}
+  },
+  {
+    "id": "farmer_carry_bag",
+    "name": "Farmer's Carry (loaded bag)",
+    "pattern": "carry_or_core",
+    "equipmentRequired": ["none"],
+    "isSeated": false,
+    "isSupported": false,
+    "videoUrl": null,
+    "cues": [
+      "Hold a loaded bag or bags in each hand, standing tall.",
+      "Walk a short, clear path with your shoulders back and steps steady.",
+      "Set the bags down with control if you feel unsteady."
+    ],
+    "commonMistake": "Rushing the steps instead of walking at a controlled, steady pace.",
+    "substituteIds": ["seated_marching_core"],
+    "contraindicatedFlags": ["balance_or_falls"],
+    "jargonGloss": {}
+  },
+  {
+    "id": "supported_single_leg_stance",
+    "name": "Supported Single-Leg Stance",
+    "pattern": "balance",
+    "equipmentRequired": ["none"],
+    "isSeated": false,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Stand behind a sturdy chair, holding the back of it with both hands.",
+      "Lift one foot slightly off the floor and hold, keeping your hips level.",
+      "Switch feet after the set time."
+    ],
+    "commonMistake": "Gripping the chair so tightly that the shoulders creep up toward the ears.",
+    "substituteIds": ["seated_marching_core"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "tandem_stance_supported",
+    "name": "Tandem Stance (heel-to-toe, supported)",
+    "pattern": "balance",
+    "equipmentRequired": ["none"],
+    "isSeated": false,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Stand next to a wall or counter for light fingertip support.",
+      "Place one foot directly in front of the other, heel touching toe.",
+      "Hold the position, then switch which foot is in front."
+    ],
+    "commonMistake": "Looking down at the feet instead of straight ahead, which throws off balance.",
+    "substituteIds": ["supported_single_leg_stance", "seated_marching_core"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "seated_hip_hinge_chair",
+    "name": "Seated Hip Hinge (chair, no equipment)",
+    "pattern": "hinge",
+    "equipmentRequired": ["none"],
+    "isSeated": true,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Sit tall on the front half of a sturdy chair with both feet flat on the floor.",
+      "This is a hip hinge — fold forward from your hips with a flat back, sliding your hands down your thighs toward your knees.",
+      "Squeeze your glutes (buttock muscles) and press your feet down to sit back up tall."
+    ],
+    "commonMistake": "Rounding the upper back and letting the chin drop instead of keeping the chest lifted.",
+    "substituteIds": ["standing_hip_hinge"],
+    "contraindicatedFlags": [],
+    "jargonGloss": { "hip hinge": "bending forward from the hips while keeping the back straight" }
+  },
+  {
+    "id": "seated_knee_extension",
+    "name": "Seated Knee Extension (no equipment)",
+    "pattern": "squat_or_press",
+    "equipmentRequired": ["none"],
+    "isSeated": true,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Sit tall in a sturdy chair with your back supported and both feet flat.",
+      "Slowly straighten one knee until the leg is out in front of you, and pause for a moment.",
+      "Lower the foot back down slowly, then switch legs."
+    ],
+    "commonMistake": "Swinging the leg up quickly instead of lifting and lowering under control.",
+    "substituteIds": ["chair_squat"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "seated_palm_press",
+    "name": "Seated Palm Press (no equipment)",
+    "pattern": "push",
+    "equipmentRequired": ["none"],
+    "isSeated": true,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Sit tall with your back against the chair and press your palms together in front of your chest.",
+      "Push your hands into each other firmly and hold for a slow count of five.",
+      "Relax for a moment between each press."
+    ],
+    "commonMistake": "Holding your breath while pressing — keep breathing steadily throughout.",
+    "substituteIds": ["wall_push_up"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  },
+  {
+    "id": "seated_scapular_squeeze",
+    "name": "Seated Shoulder Blade Squeeze (no equipment)",
+    "pattern": "pull",
+    "equipmentRequired": ["none"],
+    "isSeated": true,
+    "isSupported": true,
+    "videoUrl": null,
+    "cues": [
+      "Sit tall with your arms bent and elbows tucked near your sides.",
+      "Draw your elbows back and squeeze your shoulder blades together, as if pinching something between them.",
+      "Hold for a slow count of three, then release with control."
+    ],
+    "commonMistake": "Shrugging the shoulders up toward the ears instead of drawing them back and down.",
+    "substituteIds": ["doorframe_row"],
+    "contraindicatedFlags": [],
+    "jargonGloss": {}
+  }
+]
