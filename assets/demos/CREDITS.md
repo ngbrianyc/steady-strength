@@ -49,9 +49,14 @@ the burden of checking on the reuser:
 
 No photographer credit or copyright notice appeared on the source pages for
 these specific images, which is consistent with federal authorship — but that
-is an absence of evidence, not proof. **Before distributing this app
-commercially, confirm their status with NIA** (NIAWebsiteFeedback@mail.nih.gov).
-Nothing here is legal advice.
+is an absence of evidence, not proof.
+
+**Decision on record (2026-10-16):** the project owner reviewed this and
+accepted the residual risk, as the app is for personal use. That is a
+reasonable call at this scale. It does not carry over to distribution —
+**if this app is ever published, sold, or handed to users beyond the owner's
+household, confirm image status with NIA first**
+(NIAWebsiteFeedback@mail.nih.gov). Nothing here is legal advice.
 
 Separately: **"Go4Life" is a registered trademark of the US Department of
 Health and Human Services.** The name and logo are deliberately not used
@@ -71,9 +76,25 @@ anywhere in this app; only the photographs are.
 
 ## Still missing
 
-No demo yet for the hinge pattern, the carries, seated marching, doorframe row,
-the band chest press, or the bodyweight seated push/pull variants. NIA has no
-equivalent for several of these, and the ones it does have (e.g. "Chair Dip",
-"Side Arm Raise") are different movements — mapping them would reintroduce
-exactly the mismatch this directory exists to avoid. Those exercises show their
-cues with no image, which is the honest fallback.
+No demo for the hinge pattern, the carries, seated marching, doorframe row,
+the band chest press, or the bodyweight seated push/pull variants.
+
+Seven of twenty-two is the ceiling from this source, and that was checked
+rather than assumed. Every remaining NIA image was reviewed individually:
+
+| NIA image | Looks like a match for | Actually is |
+|---|---|---|
+| `chest.jpg` | `seated_chest_press_band` | A seated chest **stretch**, arms opened wide — not a press |
+| `upper_back.jpg` | `seated_scapular_squeeze` | An upper-back **stretch**, rounding forward — the opposite movement |
+| `hip.jpg` | the hinge gap | A floor-lying hip **stretch**; also wrong for anyone with fall risk |
+| `chair_dip.jpg` | `seated_palm_press` | A triceps dip — a different, harder movement |
+| `side_arm_raise.jpg` | `seated_scapular_squeeze` | A lateral raise — different muscle, different movement |
+
+NIA's strength set simply contains no hip hinge and no loaded carry. Mapping
+any of the above would reintroduce exactly the mismatch this directory exists
+to avoid, so those exercises show cues with no image.
+
+**The hinge is the gap worth closing.** It is the most jargon-heavy movement
+in the app — the one the spec singles out as always needing a plain-language
+gloss — and it has no demo anywhere, open or commercial. If anything gets
+filmed by hand, film that one.
