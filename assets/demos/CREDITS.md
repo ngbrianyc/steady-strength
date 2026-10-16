@@ -94,7 +94,14 @@ NIA's strength set simply contains no hip hinge and no loaded carry. Mapping
 any of the above would reintroduce exactly the mismatch this directory exists
 to avoid, so those exercises show cues with no image.
 
-**The hinge is the gap worth closing.** It is the most jargon-heavy movement
-in the app — the one the spec singles out as always needing a plain-language
-gloss — and it has no demo anywhere, open or commercial. If anything gets
-filmed by hand, film that one.
+**The hinge is drawn, not photographed.** It is the most jargon-heavy movement
+in the app, and no source has a demo for it — notably, neither NIA nor the
+NHS programs a hip hinge for sedentary older beginners at all, so the absence
+is about the standard repertoire rather than about image licensing.
+
+`src/components/HipHingeAnimation.tsx` draws it instead: a side-view figure
+whose spine is a single unbroken straight line pivoting about a marked hip
+joint. For this movement a line figure is arguably clearer than a photograph
+would be, since the entire teaching point is "the back stays straight and the
+fold happens at the hip" — which clothing and body shape tend to obscure in a
+photo. Seated and standing variants use matching figures.

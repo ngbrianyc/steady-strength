@@ -1,8 +1,22 @@
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { BodyText } from "@/components/BodyText";
+import { HipHingeAnimation } from "@/components/HipHingeAnimation";
 import { DEMO_ASSETS } from "@/data/demoAssets";
 import { color, space, tapTarget } from "@/theme/tokens";
+
+/**
+ * Hinges have no photo demo in any source (see assets/demos/CREDITS.md), so
+ * they get a drawn one. Seated and standing hinges use matching figures — a
+ * seated drawing on a standing exercise would be the same mismatch the photo
+ * sourcing was careful to avoid.
+ */
+const ANIMATED_DEMOS: Record<string, React.ReactElement> = {
+  seated_hip_hinge_chair: <HipHingeAnimation variant="seated" />,
+  seated_hip_hinge_band: <HipHingeAnimation variant="seated" />,
+  standing_hip_hinge: <HipHingeAnimation variant="standing" />,
+  dumbbell_romanian_deadlift: <HipHingeAnimation variant="standing" />,
+};
 
 interface Props {
   exerciseId: string;
@@ -15,6 +29,9 @@ interface Props {
  * audience, so nothing is substituted.
  */
 export function ExerciseDemo({ exerciseId }: Props) {
+  const animated = ANIMATED_DEMOS[exerciseId];
+  if (animated) return animated;
+
   const asset = DEMO_ASSETS[exerciseId];
 
   if (!asset) {
