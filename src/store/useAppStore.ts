@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
+import { localDayKey } from "@/lib/dates";
 import { generateId } from "@/lib/id";
 import { nextPrescription } from "@/lib/overload";
 import { buildProgramExercises } from "@/lib/programGenerator";
@@ -36,6 +37,8 @@ interface AppState {
   programExercises: ProgramExercise[];
   sessionLogs: SessionLog[];
   currentSessionDraft: Record<string, SetLogEntry[]>; // programExerciseId -> sets logged so far, not yet committed
+  /** Local day the draft belongs to, so a stale one is not resumed days later. */
+  currentSessionDraftDate: string | null;
   sessionsCompletedForActiveProgram: number;
   lastSessionCompletedAt: string | null;
 
@@ -81,6 +84,7 @@ export const useAppStore = create<AppState>()(
       programExercises: [],
       sessionLogs: [],
       currentSessionDraft: {},
+      currentSessionDraftDate: null,
       sessionsCompletedForActiveProgram: 0,
       lastSessionCompletedAt: null,
 
@@ -178,6 +182,7 @@ export const useAppStore = create<AppState>()(
           sessionsCompletedForActiveProgram: 0,
           lastSessionCompletedAt: null,
           currentSessionDraft: {},
+          currentSessionDraftDate: null,
         });
         return program;
       },
@@ -210,6 +215,7 @@ export const useAppStore = create<AppState>()(
         set((state) => {
           const existing = state.currentSessionDraft[programExerciseId] ?? [];
           return {
+            currentSessionDraftDate: localDayKey(new Date()),
             currentSessionDraft: {
               ...state.currentSessionDraft,
               [programExerciseId]: [...existing, entry],
@@ -274,6 +280,7 @@ export const useAppStore = create<AppState>()(
           sessionsCompletedForActiveProgram: state.sessionsCompletedForActiveProgram + 1,
           lastSessionCompletedAt: new Date().toISOString(),
           currentSessionDraft: {},
+          currentSessionDraftDate: null,
         }));
       },
 
@@ -286,6 +293,7 @@ export const useAppStore = create<AppState>()(
           programExercises: [],
           sessionLogs: [],
           currentSessionDraft: {},
+          currentSessionDraftDate: null,
           sessionsCompletedForActiveProgram: 0,
           lastSessionCompletedAt: null,
         }),
@@ -293,9 +301,19 @@ export const useAppStore = create<AppState>()(
     {
       name: "resistance-training-app-storage",
       storage: createJSONStorage(() => AsyncStorage),
+      // The in-progress draft IS persisted: a workout interrupted by a phone
+      // call or the OS reclaiming memory should not lose its logged sets.
       partialize: (state) => {
-        const { onboardingDraft: _unused, currentSessionDraft: _unused2, ...rest } = state;
+        const { onboardingDraft: _unused, ...rest } = state;
         return rest as AppState;
+      },
+      onRehydrateStorage: () => (state) => {
+        if (!state) return;
+        // A draft left over from an earlier day is abandoned, not resumed.
+        if (state.currentSessionDraftDate !== localDayKey(new Date())) {
+          state.currentSessionDraft = {};
+          state.currentSessionDraftDate = null;
+        }
       },
     }
   )

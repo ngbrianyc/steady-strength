@@ -1,4 +1,10 @@
-import { restDayMessage, sessionAvailability, trainingDayKeys } from "@/lib/schedule";
+import {
+  exercisesDoneToday,
+  restDayMessage,
+  resumeIndexFor,
+  sessionAvailability,
+  trainingDayKeys,
+} from "@/lib/schedule";
 import { localDayKey } from "@/lib/dates";
 import type { SessionLog } from "@/types/models";
 
@@ -74,6 +80,58 @@ describe("sessionAvailability", () => {
     const expected = new Date();
     expected.setDate(expected.getDate() + 1);
     expect(localDayKey(result.nextSessionAt)).toBe(localDayKey(expected));
+  });
+});
+
+describe("resuming an interrupted session", () => {
+  const ids = ["pe-0", "pe-1", "pe-2", "pe-3", "pe-4", "pe-5"];
+
+  function logFor(programExerciseId: string, daysAgo = 0): SessionLog {
+    const d = new Date();
+    d.setDate(d.getDate() - daysAgo);
+    d.setHours(10, 0, 0, 0);
+    return {
+      id: `log-${programExerciseId}-${daysAgo}`,
+      profileId: "p",
+      programExerciseId,
+      performedAt: d.toISOString(),
+      sets: [{ setIndex: 0, reps: 10, load: null }],
+    };
+  }
+
+  it("starts at the first exercise when nothing is logged", () => {
+    expect(resumeIndexFor(ids, [])).toBe(0);
+  });
+
+  it("resumes after the exercises already finished today", () => {
+    const logs = [logFor("pe-0"), logFor("pe-1"), logFor("pe-2")];
+    expect(resumeIndexFor(ids, logs)).toBe(3);
+  });
+
+  it("ignores exercises finished on earlier days", () => {
+    // Regression: yesterday's completed session must not skip today's exercises.
+    const logs = ids.map((id) => logFor(id, 1));
+    expect(resumeIndexFor(ids, logs)).toBe(0);
+  });
+
+  it("reports -1 only when every exercise is finished today", () => {
+    const logs = ids.map((id) => logFor(id, 0));
+    expect(resumeIndexFor(ids, logs)).toBe(-1);
+  });
+
+  it("does not treat a part-finished session as a completed one", () => {
+    // Regression: one log per exercise meant a single finished exercise read as
+    // "trained today" and locked the user out of finishing the session.
+    const logs = [logFor("pe-0")];
+    expect(resumeIndexFor(ids, logs)).toBeGreaterThan(0);
+    expect(resumeIndexFor(ids, logs)).not.toBe(-1);
+  });
+
+  it("tracks which exercise ids are done today", () => {
+    const done = exercisesDoneToday([logFor("pe-0"), logFor("pe-3"), logFor("pe-1", 2)]);
+    expect(done.has("pe-0")).toBe(true);
+    expect(done.has("pe-3")).toBe(true);
+    expect(done.has("pe-1")).toBe(false);
   });
 });
 

@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 import { Pressable, StyleSheet, Text } from "react-native";
 import { color, font, space, tapTarget } from "@/theme/tokens";
+
+/**
+ * Tremor and unsteady hands make an unintended second tap common in this age
+ * group, and every consequential action in the app runs through this button:
+ * a double tap would log a duplicate set or push the same screen twice.
+ */
+export const DOUBLE_TAP_GUARD_MS = 500;
 
 interface Props {
   label: string;
@@ -12,13 +19,21 @@ interface Props {
 export function BigButton({ label, onPress, variant = "primary", disabled = false }: Props) {
   const isPrimary = variant === "primary";
   const isDanger = variant === "danger";
+  const lastPressAt = useRef(0);
+
+  const handlePress = useCallback(() => {
+    const now = Date.now();
+    if (now - lastPressAt.current < DOUBLE_TAP_GUARD_MS) return;
+    lastPressAt.current = now;
+    onPress();
+  }, [onPress]);
 
   return (
     <Pressable
       accessibilityRole="button"
       accessibilityState={{ disabled }}
       disabled={disabled}
-      onPress={onPress}
+      onPress={handlePress}
       style={({ pressed }) => [
         styles.base,
         isPrimary && styles.primary,

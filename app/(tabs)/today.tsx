@@ -6,7 +6,7 @@ import { BigButton } from "@/components/BigButton";
 import { ScreenContainer } from "@/components/ScreenContainer";
 import { SetCompletionControl } from "@/components/SetCompletionControl";
 import { getExerciseById } from "@/data/exerciseRepo";
-import { restDayMessage, sessionAvailability } from "@/lib/schedule";
+import { resumeIndexFor, restDayMessage, sessionAvailability } from "@/lib/schedule";
 import { useAppStore } from "@/store/useAppStore";
 import { color, space, tapTarget } from "@/theme/tokens";
 
@@ -19,12 +19,22 @@ export default function TodayScreen() {
   const completeExerciseForToday = useAppStore((s) => s.completeExerciseForToday);
   const completeSession = useAppStore((s) => s.completeSession);
 
-  const [activeIndex, setActiveIndex] = useState(0);
   const [justFinished, setJustFinished] = useState(false);
   const [trainingOnRestDay, setTrainingOnRestDay] = useState(false);
 
   const availability = sessionAvailability(sessionLogs);
-  const hasCompletedToday = availability.state === "completed_today";
+  // Resume where she left off rather than trusting a counter that resets when
+  // the app is killed mid-session.
+  const resumeIndex = resumeIndexFor(
+    todaysExercises.map((pe) => pe.id),
+    sessionLogs
+  );
+  const startedToday = resumeIndex !== 0;
+  const allDoneToday = todaysExercises.length > 0 && resumeIndex === -1;
+  // Position is derived, not tracked: finishing an exercise writes a session
+  // log, which advances resumeIndex on the next render.
+  const activeIndex = Math.max(resumeIndex, 0);
+  const hasCompletedToday = allDoneToday;
 
   if (!activeProgram) {
     return (
@@ -50,7 +60,8 @@ export default function TodayScreen() {
     );
   }
 
-  if (availability.state === "rest_day" && !trainingOnRestDay) {
+  // Already part-way through today's session: finishing it is not a rest day.
+  if (availability.state === "rest_day" && !trainingOnRestDay && !startedToday) {
     return (
       <ScreenContainer
         footer={
@@ -103,8 +114,6 @@ export default function TodayScreen() {
       if (isLastExercise) {
         completeSession();
         setJustFinished(true);
-      } else {
-        setActiveIndex((i) => i + 1);
       }
     }
   }

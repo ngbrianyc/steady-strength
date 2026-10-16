@@ -48,6 +48,31 @@ export function sessionAvailability(
   return { state: "available" };
 }
 
+/** program_exercise ids already logged today, i.e. finished in this session. */
+export function exercisesDoneToday(sessionLogs: SessionLog[], now: Date = new Date()): Set<string> {
+  const today = localDayKey(now);
+  return new Set(
+    sessionLogs.filter((l) => localDayKey(l.performedAt) === today).map((l) => l.programExerciseId)
+  );
+}
+
+/**
+ * Index of the first exercise not yet finished today, or -1 when all are done.
+ *
+ * A workout writes one session_log row per exercise, so "trained today" is not
+ * the same as "finished today's session". Without this, an app restart partway
+ * through a session would either restart it from exercise one (double-logging
+ * what was already done) or lock the user out as if the session were complete.
+ */
+export function resumeIndexFor(
+  programExerciseIds: string[],
+  sessionLogs: SessionLog[],
+  now: Date = new Date()
+): number {
+  const done = exercisesDoneToday(sessionLogs, now);
+  return programExerciseIds.findIndex((id) => !done.has(id));
+}
+
 export function restDayMessage(daysUntilNext: number): string {
   if (daysUntilNext <= 1) return "Your next session is tomorrow.";
   return `Your next session is in ${daysUntilNext} days.`;
