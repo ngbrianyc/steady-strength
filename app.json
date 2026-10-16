@@ -16,7 +16,8 @@
       "bundleIdentifier": "com.steadystrength.app"
     },
     "android": {
-      "package": "com.steadystrength.app"
+      "package": "com.steadystrength.app",
+      "allowBackup": true
     },
     "plugins": [
       "expo-router",
