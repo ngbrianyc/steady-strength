@@ -50,10 +50,16 @@ insets, real touch targets) still needs a pass on a phone.
   while falls are high-cost, `balance` is a required movement pattern rather
   than a bonus. The hold target is scaled from the user's own measured stance
   time (`balanceHoldTarget` in `src/lib/programGenerator.ts`).
-- **No licensed exercise video** is wired in. The exercise detail screen has a
-  placeholder where a looped video (via `expo-video`) or a three-frame image
-  sequence would go — plug in a licensed library (ExerciseDB, Musclewiki, or
-  your own) by setting each exercise's `videoUrl` in `src/data/exercises.json`.
+- **Form demos cover 7 of 22 exercises.** Photos come from the National
+  Institute on Aging's older-adult exercise materials — real older adults doing
+  the actual movements, several already laid out as start/middle/end panels.
+  Exercises without a demo show their cues alone rather than a stand-in image.
+  Open gym datasets were rejected on content, not licensing; the reasoning and
+  the outstanding provenance question are in `assets/demos/CREDITS.md`, which
+  should be read before any commercial release.
+- **No demo exists for the hinge pattern or the carries.** The hip hinge is the
+  most jargon-heavy movement in the app and has no NIA equivalent, so it is the
+  biggest remaining gap.
 - **No app icon/splash image** — Expo will use its own default icon until you
   add one (needed before a real TestFlight build).
 

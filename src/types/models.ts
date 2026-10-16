@@ -56,6 +56,13 @@ export interface Exercise {
   isSeated: boolean;
   isSupported: boolean;
   videoUrl: string | null;
+  /**
+   * Demo frames (start position, end position) shown on the exercise detail
+   * screen. Sourced from NIA's older-adult exercise materials — see
+   * assets/demos/CREDITS.md. Empty when no suitable demo exists yet: the
+   * screen falls back to cues rather than showing a misleading image.
+   */
+  demoFrames?: string[];
   cues: string[];
   commonMistake: string;
   substituteIds: string[];

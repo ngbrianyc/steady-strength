@@ -3,9 +3,10 @@ import { router, useLocalSearchParams } from "expo-router";
 import { View } from "react-native";
 import { BodyText } from "@/components/BodyText";
 import { BigButton } from "@/components/BigButton";
+import { ExerciseDemo } from "@/components/ExerciseDemo";
 import { ScreenContainer } from "@/components/ScreenContainer";
 import { getExerciseById } from "@/data/exerciseRepo";
-import { color, space, tapTarget } from "@/theme/tokens";
+import { space, tapTarget } from "@/theme/tokens";
 
 function applyGloss(text: string, gloss: Record<string, string> | undefined): string {
   if (!gloss) return text;
@@ -48,21 +49,7 @@ export default function ExerciseDetailScreen() {
         {exercise.name}
       </BodyText>
 
-      <View
-        style={{
-          backgroundColor: color.surfaceMuted,
-          borderRadius: 16,
-          height: 200,
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: space.md,
-          marginBottom: space.md,
-        }}
-      >
-        <BodyText muted center>
-          Demo video goes here{"\n"}(licensed exercise media)
-        </BodyText>
-      </View>
+      <ExerciseDemo exerciseId={exercise.id} />
 
       <BodyText size="bodyLarge" bold style={{ marginBottom: space.xs }}>
         How to do it

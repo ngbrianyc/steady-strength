@@ -52,6 +52,13 @@ export default function LearnScreen() {
           <BodyText muted>{entry.citation}</BodyText>
         </View>
       ))}
+
+      {/* NIA's reuse policy asks that reproduced material credit NIA as the
+          originator. See assets/demos/CREDITS.md. */}
+      <BodyText muted style={{ marginBottom: space.lg }}>
+        Exercise demonstration photos courtesy of the National Institute on Aging at NIH
+        (nia.nih.gov).
+      </BodyText>
     </ScreenContainer>
   );
 }
