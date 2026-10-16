@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "Steady Strength",
-    "slug": "resistance-training-app",
+    "slug": "steady-strength",
+    "owner": "ngbrianyc",
     "scheme": "steadystrength",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -26,6 +27,9 @@
     "extra": {
       "router": {
         "origin": false
+      },
+      "eas": {
+        "projectId": "a0a9523e-d8ce-4201-975a-0e9628035048"
       }
     }
   }
