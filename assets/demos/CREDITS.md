@@ -8,18 +8,30 @@ National Institutes of Health. The Go4Life site was retired and folded into
 nia.nih.gov; these files were retrieved from Internet Archive captures of
 `go4life.nia.nih.gov/wp-content/uploads/2018/07/`.
 
-## Why these and not a stock exercise library
+## Two sources, and why
 
-Open exercise datasets exist and are properly licensed — `free-exercise-db`
-(The Unlicense, 873 exercises with start/end frames) is the best of them. They
-were rejected on content, not licensing: the imagery is young male athletes in
-commercial gyms. Its "Chair Squat" is a loaded barbell squat in a Smith
-machine, not standing up from a chair. For a sedentary adult of 55–75 learning
-to rise from a chair, that is worse than no image — wrong movement, wrong
-difficulty, and a clear signal the app is not for them.
+**National Institute on Aging (NIA)** — the bulk of the demos. Older adults in
+ordinary clothes doing the actual movements, mostly already laid out as panels.
 
-The NIA photographs show older adults in ordinary clothes doing the actual
-movements, many already laid out as start/middle/end panels.
+**free-exercise-db** (The Unlicense, public domain) — two exercises only:
+`dumbbell_goblet_squat` and `incline_push_up`. Its imagery is young male
+athletes in commercial gyms. That was initially a reason to reject it outright;
+the project owner reviewed the trade-off and judged coverage more valuable than
+demographic match for a user they can coach in person. Reasonable call, so the
+genuine movement matches were taken.
+
+What did **not** change with that decision is movement accuracy. Several
+tempting entries were still rejected after opening the actual photograph:
+
+| Entry | Rejected because |
+|---|---|
+| "Chair Squat" | A loaded barbell squat in a Smith machine — not standing up from a chair |
+| "Farmer's Walk" | A strongman *pickup* of loaded implements off the ground, not a standing carry; models a heavy floor lift |
+| "Bent Over Two-Dumbbell Row" | Correct movement, but unsupported — our cues say "rest one hand and knee on a sturdy chair", so the photo would contradict the text |
+| "Rickshaw Carry" | A two-handed frame carry, not a one-sided suitcase carry |
+
+A wrong-movement demo is a safety and comprehension problem, not a matter of
+taste, and personal use does not change that.
 
 ## Licensing
 
@@ -73,6 +85,9 @@ anywhere in this app; only the photographs are.
 | `seated_row_band.jpg` | Seated Row with Resistance Band | `seated_row_band` |
 | `seated_knee_extension.jpg` | Leg Straightening | `seated_knee_extension` |
 | `dumbbell_seated_overhead_press.jpg` | Overhead Arm Raise | `dumbbell_seated_overhead_press` |
+| `seated_leg_extension_band.jpg` | Leg Straightening (reused) | `seated_leg_extension_band` |
+| `dumbbell_goblet_squat_{0,1}.jpg` | free-exercise-db, Goblet Squat | `dumbbell_goblet_squat` |
+| `incline_push_up_{0,1}.jpg` | free-exercise-db, Incline Push-Up | `incline_push_up` |
 
 ## Still missing
 

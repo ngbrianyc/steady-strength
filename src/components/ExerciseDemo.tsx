@@ -3,6 +3,7 @@ import { Image, StyleSheet, View } from "react-native";
 import { BodyText } from "@/components/BodyText";
 import { HipHingeAnimation } from "@/components/HipHingeAnimation";
 import { DEMO_ASSETS } from "@/data/demoAssets";
+import { useAppStore } from "@/store/useAppStore";
 import { color, space, tapTarget } from "@/theme/tokens";
 
 /**
@@ -11,11 +12,11 @@ import { color, space, tapTarget } from "@/theme/tokens";
  * seated drawing on a standing exercise would be the same mismatch the photo
  * sourcing was careful to avoid.
  */
-const ANIMATED_DEMOS: Record<string, React.ReactElement> = {
-  seated_hip_hinge_chair: <HipHingeAnimation variant="seated" />,
-  seated_hip_hinge_band: <HipHingeAnimation variant="seated" />,
-  standing_hip_hinge: <HipHingeAnimation variant="standing" />,
-  dumbbell_romanian_deadlift: <HipHingeAnimation variant="standing" />,
+const ANIMATED_HINGES: Record<string, "seated" | "standing"> = {
+  seated_hip_hinge_chair: "seated",
+  seated_hip_hinge_band: "seated",
+  standing_hip_hinge: "standing",
+  dumbbell_romanian_deadlift: "standing",
 };
 
 interface Props {
@@ -23,18 +24,21 @@ interface Props {
 }
 
 /**
- * Demo images show the start and end position side by side in a single frame.
- * When an exercise has no demo, the cues stand on their own — a stand-in image
- * of the wrong movement or the wrong person is worse than none for this
- * audience, so nothing is substituted.
+ * Demo photos show the positions of the movement in sequence. When an exercise
+ * has neither a photo nor a drawn figure, the cues stand on their own — a
+ * stand-in image of the wrong movement is worse than none for this audience,
+ * so nothing is substituted.
  */
 export function ExerciseDemo({ exerciseId }: Props) {
-  const animated = ANIMATED_DEMOS[exerciseId];
-  if (animated) return animated;
+  const sex = useAppStore((s) => s.profile?.sex);
 
-  const asset = DEMO_ASSETS[exerciseId];
+  const hinge = ANIMATED_HINGES[exerciseId];
+  if (hinge) {
+    return <HipHingeAnimation variant={hinge} figure={sex === "male" ? "male" : "female"} />;
+  }
 
-  if (!asset) {
+  const frames = DEMO_ASSETS[exerciseId];
+  if (!frames || frames.length === 0) {
     return (
       <View style={styles.placeholder}>
         <BodyText muted center>
@@ -46,14 +50,22 @@ export function ExerciseDemo({ exerciseId }: Props) {
 
   return (
     <View style={styles.wrap}>
-      <Image
-        source={asset}
-        style={styles.image}
-        resizeMode="contain"
-        accessibilityIgnoresInvertColors
-        accessible
-        accessibilityLabel="Photo showing the start and end position of this exercise"
-      />
+      <View style={styles.frameRow}>
+        {frames.map((frame, i) => (
+          <Image
+            key={i}
+            source={frame}
+            style={[styles.image, frames.length > 1 && styles.imageInRow]}
+            resizeMode="contain"
+            accessibilityIgnoresInvertColors
+            accessibilityLabel={
+              frames.length > 1
+                ? `Position ${i + 1} of ${frames.length} for this exercise`
+                : "Photo showing the positions of this exercise"
+            }
+          />
+        ))}
+      </View>
       <BodyText muted style={styles.caption}>
         Follow the positions from left to right.
       </BodyText>
@@ -66,11 +78,18 @@ const styles = StyleSheet.create({
     marginTop: space.md,
     marginBottom: space.md,
   },
+  frameRow: {
+    flexDirection: "row",
+    gap: space.xs,
+  },
   image: {
-    width: "100%",
-    height: 220,
+    flex: 1,
+    height: 200,
     borderRadius: tapTarget.radius,
     backgroundColor: color.surfaceMuted,
+  },
+  imageInRow: {
+    height: 150,
   },
   caption: {
     marginTop: space.xs,
